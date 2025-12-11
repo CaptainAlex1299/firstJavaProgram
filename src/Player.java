@@ -6,13 +6,18 @@ public class Player {
     int attackPower;
     ArrayList<Item> inventory;
     Equipment equippedItem = new Equipment("fists", 2);
+    int xp;
+    int level;
+    int xpToLevel;
 
-
-    public Player(String name, int health, int attackPower, ArrayList<Item> inventory) {
+    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
         this.inventory = inventory;
+        this.xp =xp;
+        this.level = level;
+        this.xpToLevel = xpToLevel;
     }
 
     public void pickup(Item item){
@@ -31,6 +36,21 @@ public class Player {
                 this.health += item.healAmount;
                 inventory.remove(item);
         }
+    }
+
+    public void gainXP(int amount){
+        xp += amount;
+        if(xp >= xpToLevel){
+            levelUp();
+        }
+    }
+
+    public void levelUp(){
+        level++;
+        xpToLevel = (int)(xpToLevel * 1.3);
+        health += 20;
+        attackPower += 5;
+        System.out.println("LEVEL UP! " + name + " is now level " + level);
     }
 
     public void attack(Enemy enemy){

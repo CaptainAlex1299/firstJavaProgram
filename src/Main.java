@@ -4,14 +4,30 @@ import java.util.ArrayList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Player p1 = new Player("Alex", 100, 10, new ArrayList<>());
-        Enemy spider = new Enemy("GiantSpider", 100, 2);
-        Enemy boss = new Enemy("SpiderQueen", 1_000, 10);
+        Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100);
+        Enemy spider = new Enemy("GiantSpider", 100, 2, 100);
+        Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500);
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
-            spider.enemyAttack(p1);
             System.out.println(spider.type + " hp:" + spider.health);
+
+            if(spider.health <= 0) {
+                System.out.println(spider.type + " is defeated");
+                p1.gainXP(spider.xpReward);
+                System.out.println("XP gained : " + spider.xpReward);
+                break;
+            }
+
+            spider.enemyAttack(p1);
             System.out.println(p1.name + " hp: " + p1.health);
+            if(p1.health <= 0) {
+                System.out.println("Game Over");
+                break;
+            }
+        }
+
+        if(p1.xp >= p1.xpToLevel) {
+            p1.levelUp();
         }
 
         Item sword = new Item("sword", 120);
