@@ -1,12 +1,14 @@
 public class Item {
     String name;
     int value;
+    int dropChance;
     String type;
     int healAmount;
 
-    public Item(String name, int value) {
+    public Item(String name, int value, int dropChance) {
         this.name = name;
         this.value = value;
+        this.dropChance = dropChance;
     }
 
     public Item(String name, int healAmount, String type) {

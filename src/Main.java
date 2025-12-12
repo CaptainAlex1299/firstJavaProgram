@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100);
+
+        Item sword = new Item("sword", 120, 50);
+        Item shield = new Item("shield", 25, 100);
         Enemy spider = new Enemy("GiantSpider", 100, 2, 100);
         Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500);
+
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
             System.out.println(spider.type + " hp:" + spider.health);
@@ -15,6 +19,8 @@ public class Main {
                 System.out.println(spider.type + " is defeated");
                 p1.gainXP(spider.xpReward);
                 System.out.println("XP gained : " + spider.xpReward);
+                spider.giveLoot(p1);
+                System.out.println("new loot in inventory : " + p1.inventory);
                 break;
             }
 
@@ -30,8 +36,6 @@ public class Main {
             p1.levelUp();
         }
 
-        Item sword = new Item("sword", 120);
-        Item shield = new Item("shield", 25);
         p1.pickup(sword);
         p1.pickup(shield);
 
