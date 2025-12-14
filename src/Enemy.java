@@ -5,16 +5,18 @@ public class Enemy {
     int health;
     int enemyAttackPower;
     int xpReward;
+    int goldReward;
     ArrayList<Item> dropTable;
 
-    public Enemy(String type, int health, int enemyAttackPower, int xpReward) {
+    public Enemy(String type, int health, int enemyAttackPower, int xpReward, int goldReward) {
         this.type = type;
         this.health = health;
         this.enemyAttackPower = enemyAttackPower;
         this.xpReward = xpReward;
+        this.goldReward = goldReward;
         this.dropTable = new  ArrayList<>();
-        this.dropTable.add(new Item("Big-sword", 220, 50));
-        this.dropTable.add(new Item("Big-shield", 125, 40));
+        this.dropTable.add(new Item("Big-sword", 220, 50, 100));
+        this.dropTable.add(new Item("Big-shield", 125, 40, 100));
     }
 
     public void giveLoot(Player player) {

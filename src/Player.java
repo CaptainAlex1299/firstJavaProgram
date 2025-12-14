@@ -9,8 +9,9 @@ public class Player {
     int xp;
     int level;
     int xpToLevel;
+    int gold;
 
-    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel) {
+    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -18,6 +19,19 @@ public class Player {
         this.xp =xp;
         this.level = level;
         this.xpToLevel = xpToLevel;
+        this.gold = gold;
+    }
+
+    public void buy(Shop shop, Item item) {
+        if(shop.shopItems.contains(item)) {
+            if(gold >= item.sellPrice) {
+                gold -= item.sellPrice;
+                inventory.add(item);
+                shop.shopItems.remove(item);
+            } else {
+                System.out.println("You can't buy this item");
+            }
+        }
     }
 
     public void pickup(Item item){

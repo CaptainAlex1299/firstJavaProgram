@@ -4,12 +4,22 @@ import java.util.ArrayList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100);
+        Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100, 150);
 
-        Item sword = new Item("sword", 120, 50);
-        Item shield = new Item("shield", 25, 100);
-        Enemy spider = new Enemy("GiantSpider", 100, 2, 100);
-        Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500);
+        Item sword = new Item("sword", 120, 50, 100);
+        Item ironSword = new Item("Iron sword", 120, 50, 100);
+        Item steelSword = new Item("Steel sword", 120, 50, 100);
+
+        Item shield = new Item("shield", 25, 100,100);
+        Enemy spider = new Enemy("GiantSpider", 100, 2, 100, 150);
+        Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500, 1000);
+
+        Shop firstShop = new Shop("FirstShop");
+        firstShop.shopItems.add(ironSword);
+        firstShop.shopItems.add(steelSword);
+
+        p1.buy(firstShop, steelSword);
+        System.out.println(p1.inventory);
 
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
@@ -20,6 +30,8 @@ public class Main {
                 p1.gainXP(spider.xpReward);
                 System.out.println("XP gained : " + spider.xpReward);
                 spider.giveLoot(p1);
+                p1.gold += spider.goldReward;
+                System.out.println("Player Gold is : " + p1.gold);
                 System.out.println("new loot in inventory : " + p1.inventory);
                 break;
             }
