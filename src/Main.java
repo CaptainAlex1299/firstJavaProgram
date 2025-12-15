@@ -14,12 +14,15 @@ public class Main {
         Enemy spider = new Enemy("GiantSpider", 100, 2, 100, 150);
         Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500, 1000);
 
-        Shop firstShop = new Shop("FirstShop");
+        Shop firstShop = new Shop("Arms&Armor", 2000);
         firstShop.shopItems.add(ironSword);
         firstShop.shopItems.add(steelSword);
 
+        firstShop.showItems();
+
         p1.buy(firstShop, steelSword);
         System.out.println(p1.inventory);
+        firstShop.showItems();
 
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
@@ -43,6 +46,9 @@ public class Main {
                 break;
             }
         }
+
+        p1.sell(firstShop, steelSword);
+        firstShop.showItems();
 
         if(p1.xp >= p1.xpToLevel) {
             p1.levelUp();

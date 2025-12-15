@@ -26,10 +26,24 @@ public class Player {
         if(shop.shopItems.contains(item)) {
             if(gold >= item.sellPrice) {
                 gold -= item.sellPrice;
+                shop.shopGold += item.sellPrice;
                 inventory.add(item);
                 shop.shopItems.remove(item);
             } else {
                 System.out.println("You can't buy this item");
+            }
+        }
+    }
+
+    public void sell(Shop shop, Item item) {
+        if(inventory.contains(item)) {
+            if(shop.shopGold >= item.sellPrice) {
+                shop.shopGold -= item.sellPrice;
+                inventory.remove(item);
+                gold += item.sellPrice;
+            }
+            else {
+                System.out.println("You can't sell this item");
             }
         }
     }
