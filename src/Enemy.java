@@ -6,11 +6,13 @@ public class Enemy {
     int enemyAttackPower;
     int xpReward;
     int goldReward;
+    int dodgeChance;
     ArrayList<Item> dropTable;
 
-    public Enemy(String type, int health, int enemyAttackPower, int xpReward, int goldReward) {
+    public Enemy(String type, int health, int enemyAttackPower, int xpReward, int goldReward, int dodgeChance) {
         this.type = type;
         this.health = health;
+        this.dodgeChance = dodgeChance;
         this.enemyAttackPower = enemyAttackPower;
         this.xpReward = xpReward;
         this.goldReward = goldReward;

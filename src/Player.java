@@ -11,8 +11,9 @@ public class Player {
     int xpToLevel;
     int gold;
     int crit;
+    int accuracy;
 
-    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold, int crit) {
+    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold, int crit, int accuracy) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -22,6 +23,7 @@ public class Player {
         this.xpToLevel = xpToLevel;
         this.gold = gold;
         this.crit = crit;
+        this.accuracy = accuracy;
     }
 
     public void buy(Shop shop, Item item) {
@@ -84,12 +86,18 @@ public class Player {
     }
 
     public void attack(Enemy enemy){
-        if(Math.random() * 100 < crit){
-            enemy.health -= (attackPower + equippedItem.weaponAttackPower) * 2;
-            System.out.println("Critical hit!");
-    } else {
-            enemy.health -= attackPower + equippedItem.weaponAttackPower;
+        if((Math.random() * 100) + accuracy > enemy.dodgeChance){
+            if(Math.random() * 100 < crit){
+                enemy.health -= (attackPower + equippedItem.weaponAttackPower) * 2;
+                System.out.println("Critical hit!");
+            } else {
+                enemy.health -= attackPower + equippedItem.weaponAttackPower;
+            }
         }
+            else{
+                System.out.println("Enemy dodged the attack");
+            }
+
     }
 
 }
