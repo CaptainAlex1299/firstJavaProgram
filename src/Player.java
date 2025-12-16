@@ -10,8 +10,9 @@ public class Player {
     int level;
     int xpToLevel;
     int gold;
+    int crit;
 
-    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold) {
+    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold, int crit) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -20,6 +21,7 @@ public class Player {
         this.level = level;
         this.xpToLevel = xpToLevel;
         this.gold = gold;
+        this.crit = crit;
     }
 
     public void buy(Shop shop, Item item) {
@@ -82,7 +84,12 @@ public class Player {
     }
 
     public void attack(Enemy enemy){
-        enemy.health -= attackPower + equippedItem.weaponAttackPower;
+        if(Math.random() * 100 < crit){
+            enemy.health -= (attackPower + equippedItem.weaponAttackPower) * 2;
+            System.out.println("Critical hit!");
+    } else {
+            enemy.health -= attackPower + equippedItem.weaponAttackPower;
+        }
     }
 
 }
