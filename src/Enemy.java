@@ -17,8 +17,8 @@ public class Enemy {
         this.xpReward = xpReward;
         this.goldReward = goldReward;
         this.dropTable = new  ArrayList<>();
-        this.dropTable.add(new Item("Big-sword", 220, 50, 100));
-        this.dropTable.add(new Item("Big-shield", 125, 40, 100));
+        this.dropTable.add(new Item("Big-sword", 220, 50, 100, 15, -10));
+        this.dropTable.add(new Item("Big-shield", 125, 40, 100, 15, -10));
     }
 
     public void giveLoot(Player player) {

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100, 150, 20, 70);
+        Player p1 = new Player("Alex", 100, 10, new ArrayList<>(), 1,0, 100, 150);
 
-        Item sword = new Item("sword", 120, 50, 100);
-        Item ironSword = new Item("Iron sword", 120, 50, 100);
-        Item steelSword = new Item("Steel sword", 120, 50, 100);
+        Item sword = new Item("sword", 120, 50, 100, 5, 10);
+        Item ironSword = new Item("Iron sword", 120, 50, 100, 5, 10);
+        Item steelSword = new Item("Steel sword", 120, 50, 100, 5, 10);
 
-        Item shield = new Item("shield", 25, 100,100);
+        Item shield = new Item("shield", 25, 100,100, 0, 0);
         Enemy spider = new Enemy("GiantSpider", 100, 2, 100, 150, 100);
         Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500, 1000, 0);
 

@@ -5,15 +5,13 @@ public class Player {
     int health;
     int attackPower;
     ArrayList<Item> inventory;
-    Equipment equippedItem = new Equipment("fists", 2);
+    Equipment equippedItem = new Equipment("fists", 2, 0, 10);
     int xp;
     int level;
     int xpToLevel;
     int gold;
-    int crit;
-    int accuracy;
 
-    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold, int crit, int accuracy) {
+    public Player(String name, int health, int attackPower, ArrayList<Item> inventory, int level, int xp, int xpToLevel, int gold) {
         this.name = name;
         this.health = health;
         this.attackPower = attackPower;
@@ -22,8 +20,6 @@ public class Player {
         this.level = level;
         this.xpToLevel = xpToLevel;
         this.gold = gold;
-        this.crit = crit;
-        this.accuracy = accuracy;
     }
 
     public void buy(Shop shop, Item item) {
@@ -59,7 +55,7 @@ public class Player {
 
     public void equip(Item item){
         inventory.remove(item);
-        equippedItem = new Equipment(item.name, item.value);
+        equippedItem = new Equipment(item.name, item.value, item.critMod, item.hitMod);
         System.out.println(item.name + " equipped");
     }
 
@@ -86,8 +82,8 @@ public class Player {
     }
 
     public void attack(Enemy enemy){
-        if((Math.random() * 100) + accuracy > enemy.dodgeChance){
-            if(Math.random() * 100 < crit){
+        if((Math.random() * 100) + equippedItem.weaponAcc > enemy.dodgeChance){
+            if(Math.random() * 100 < equippedItem.weaponCrit){
                 enemy.health -= (attackPower + equippedItem.weaponAttackPower) * 2;
                 System.out.println("Critical hit!");
             } else {
