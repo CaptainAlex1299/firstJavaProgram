@@ -14,6 +14,8 @@ public class Main {
         Enemy spider = new Enemy("GiantSpider", 100, 2, 100, 150, 100);
         Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500, 1000, 0);
 
+        Skill puncture = new Skill("puncture", "attackSkill", 1, 50);
+
         Shop firstShop = new Shop("Arms&Armor", 2000);
         firstShop.shopItems.add(ironSword);
         firstShop.shopItems.add(steelSword);
@@ -26,6 +28,7 @@ public class Main {
 
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
+            p1.useOffensiveSkill(puncture, spider);
             System.out.println(spider.type + " hp:" + spider.health);
 
             if(spider.health <= 0) {

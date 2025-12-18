@@ -96,4 +96,10 @@ public class Player {
 
     }
 
+    public void useOffensiveSkill(Skill skill, Enemy e){
+        if(skill.skillType.equals("attackSkill")){
+            e.health =-skill.skillValue;
+        }
+    }
+
 }
