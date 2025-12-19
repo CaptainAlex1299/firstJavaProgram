@@ -93,12 +93,18 @@ public class Player {
             else{
                 System.out.println("Enemy dodged the attack");
             }
-
     }
 
     public void useOffensiveSkill(Skill skill, Enemy e){
         if(skill.skillType.equals("attackSkill")){
             e.health =-skill.skillValue;
+        }
+    }
+
+    public void useFriendlySkill(Skill skill){
+        if(skill.skillType.equals("healSkill")){
+            this.health += skill.skillValue;
+            System.out.println("player health is now: " + this.health);
         }
     }
 
