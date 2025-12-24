@@ -15,6 +15,7 @@ public class Main {
         Enemy boss = new Enemy("SpiderQueen", 1_000, 10, 500, 1000, 0);
 
         Skill puncture = new Skill("puncture", "attackSkill", 1, 50);
+        Skill heal = new Skill("heal", "healSkill", 1, 50);
 
         Shop firstShop = new Shop("Arms&Armor", 2000);
         firstShop.shopItems.add(ironSword);
@@ -26,9 +27,20 @@ public class Main {
         System.out.println(p1.inventory);
         firstShop.showItems();
 
+        ArrayList<Player> players = new ArrayList<>();
+        ArrayList<Enemy> enemies = new ArrayList<>();
+
+        players.add(p1);
+        enemies.add(spider);
+
+        Battle battle = new Battle(enemies, players, 0);
+
+        battle.startBattle(players, enemies);
+
         while (spider.health > 0 && p1.health > 0) {
             p1.attack(spider);
             p1.useOffensiveSkill(puncture, spider);
+            p1.useFriendlySkill(heal);
             System.out.println(spider.type + " hp:" + spider.health);
 
             if(spider.health <= 0) {
