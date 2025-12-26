@@ -108,17 +108,4 @@ public class Player {
         }
     }
 
-//    public void startBattle(Battle battle) {
-//        battle.roundCount++;
-//        int friendlySize = battle.player.size();
-//        int enemySize = battle.enemy.size();
-//        System.out.println("Round count is now: " + battle.roundCount + "!");
-//        while(enemySize > 0 && friendlySize > 0){
-//            if(battle.playerTurnCount <= 0 && battle.enemyTurnCount <= 0){
-//                battle.roundCount++;
-//                System.out.println("Round count is now: " + battle.roundCount + "!");
-//            }
-//        }
-//    }
-
 }
